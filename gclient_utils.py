@@ -30,8 +30,8 @@ import subprocess2
 # Git wrapper retries on a transient error, and some callees do retries too,
 # such as GitWrapper.update (doing clone). One retry attempt should be
 # sufficient to help with any transient errors at this level.
-RETRY_MAX = 1
-RETRY_INITIAL_SLEEP = 2  # in seconds
+RETRY_MAX = 10000
+RETRY_INITIAL_SLEEP = 1  # in seconds
 START = datetime.datetime.now()
 
 _WARNINGS = []
@@ -1277,7 +1277,7 @@ def DefaultDeltaBaseCacheLimit():
   parameter is set too high.
   """
     if platform.architecture()[0].startswith('64'):
-        return '2g'
+        return '3g'
 
     return '512m'
 

@@ -86,7 +86,7 @@ CIPD_BACKEND="https://chrome-infra-packages.appspot.com"
 VERSION_FILE="${MYPATH}/cipd_client_version"
 
 CLIENT="${MYPATH}/.cipd_client"
-PLATFORM="windows-amd64"
+PLATFORM="${OS}-${ARCH}"
 
 # A value in .cipd_client_platform overrides the "guessed" platform.
 PLATFORM_OVERRIDE_FILE="${MYPATH}/.cipd_client_platform"

@@ -1267,7 +1267,7 @@ class GitWrapper(SCMWrapper):
             self._Checkout(options, ''.join(remote_ref or revision), quiet=True)
         else:
             cfg = gclient_utils.DefaultIndexPackConfig(url)
-            clone_cmd = cfg + ['clone', '--no-checkout', '--progress']
+            clone_cmd = cfg + ['clone', '--no-checkout', '--progress', '--depth=1', '--ipv4']
             if self.cache_dir:
                 clone_cmd.append('--shared')
             if options.verbose:
@@ -1565,7 +1565,7 @@ class GitWrapper(SCMWrapper):
                prune=False,
                quiet=False,
                refspec=None,
-               depth=None):
+               depth=1):
         cfg = gclient_utils.DefaultIndexPackConfig(self.url)
         # When updating, the ref is modified to be a remote ref .
         # (e.g. refs/heads/NAME becomes refs/remotes/REMOTE/NAME).
@@ -1592,7 +1592,7 @@ class GitWrapper(SCMWrapper):
         if options.verbose:
             fetch_cmd.append('--verbose')
         if not hasattr(options, 'with_tags') or not options.with_tags:
-            fetch_cmd.append('--no-tags')
+            fetch_cmd.append('--no-tags --depth=1 --ipv4')
         elif quiet:
             fetch_cmd.append('--quiet')
         if depth:

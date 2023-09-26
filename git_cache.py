@@ -491,7 +491,7 @@ class Mirror(object):
         if depth:
             fetch_cmd.extend(['--depth', str(depth)])
         if no_fetch_tags:
-            fetch_cmd.append('--no-tags')
+            fetch_cmd.append('--no-tags --depth=1 --ipv4')
         if prune:
             fetch_cmd.append('--prune')
         fetch_cmd.append('origin')
