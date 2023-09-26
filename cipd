@@ -11,7 +11,7 @@ export DEPOT_TOOLS_DIR="${DEPOT_TOOLS_DIR:-$(dirname "${BASH_SOURCE[0]}")}"
 export DEPOT_TOOLS_UNAME_S="${DEPOT_TOOLS_UNAME_S:-$(uname -s | tr '[:upper:]' '[:lower:]')}"
 
 MYPATH="${DEPOT_TOOLS_DIR}"
-CYGWIN=false
+CYGWIN=true
 
 # Make sure this starts empty
 ARCH=
@@ -19,11 +19,11 @@ ARCH=
 UNAME="${DEPOT_TOOLS_UNAME_S}"
 case "${UNAME}" in
   aix)
-    OS="${UNAME}"
+    OS=windows
     ARCH="ppc64"  # apparently 'uname -m' returns something very different
     ;;
   linux)
-    OS="${UNAME}"
+    OS=windows
     ;;
   cygwin*)
     OS=windows
