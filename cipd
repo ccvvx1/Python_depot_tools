@@ -11,7 +11,7 @@ export DEPOT_TOOLS_DIR="${DEPOT_TOOLS_DIR:-$(dirname "${BASH_SOURCE[0]}")}"
 export DEPOT_TOOLS_UNAME_S="${DEPOT_TOOLS_UNAME_S:-$(uname -s | tr '[:upper:]' '[:lower:]')}"
 
 MYPATH="${DEPOT_TOOLS_DIR}"
-CYGWIN=true
+CYGWIN=false
 
 # Make sure this starts empty
 ARCH=
@@ -19,11 +19,11 @@ ARCH=
 UNAME="${DEPOT_TOOLS_UNAME_S}"
 case "${UNAME}" in
   aix)
-    OS=windows
+    OS="${UNAME}"
     ARCH="ppc64"  # apparently 'uname -m' returns something very different
     ;;
   linux)
-    OS=windows
+    OS="${UNAME}"
     ;;
   cygwin*)
     OS=windows
@@ -86,7 +86,7 @@ CIPD_BACKEND="https://chrome-infra-packages.appspot.com"
 VERSION_FILE="${MYPATH}/cipd_client_version"
 
 CLIENT="${MYPATH}/.cipd_client"
-PLATFORM="${OS}-${ARCH}"
+PLATFORM="windows-amd64"
 
 # A value in .cipd_client_platform overrides the "guessed" platform.
 PLATFORM_OVERRIDE_FILE="${MYPATH}/.cipd_client_platform"
