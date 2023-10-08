@@ -990,6 +990,7 @@ class ExecutionQueue(object):
                         sys.stdout.flush()
                         for task in self.running:
                             print('[%s]   %s' % (elapsed, task.item.name))
+                            print('!!!!!!!!! task', task.item, " !!!!!!")
                             sys.stdout.flush()
                 except KeyboardInterrupt:
                     # Help debugging by printing some information:

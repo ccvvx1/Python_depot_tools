@@ -1460,30 +1460,30 @@ class GitWrapper(SCMWrapper):
                 % (self.relpath, revision, lockfile))
 
         # Make sure the tree is clean; see git-rebase.sh for reference
-        try:
-            scm.GIT.Capture(
-                ['update-index', '--ignore-submodules', '--refresh'],
-                cwd=self.checkout_path)
-        except subprocess2.CalledProcessError:
-            raise gclient_utils.Error(
-                '\n____ %s at %s\n'
-                '\tYou have unstaged changes.\n'
-                '\tcd into %s, run git status to see changes,\n'
-                '\tand commit, stash, or reset.\n' %
-                (self.relpath, revision, self.relpath))
-        try:
-            scm.GIT.Capture([
-                'diff-index', '--cached', '--name-status', '-r',
-                '--ignore-submodules', 'HEAD', '--'
-            ],
-                            cwd=self.checkout_path)
-        except subprocess2.CalledProcessError:
-            raise gclient_utils.Error(
-                '\n____ %s at %s\n'
-                '\tYour index contains uncommitted changes\n'
-                '\tcd into %s, run git status to see changes,\n'
-                '\tand commit, stash, or reset.\n' %
-                (self.relpath, revision, self.relpath))
+        # try:
+        #     scm.GIT.Capture(
+        #         ['update-index', '--ignore-submodules', '--refresh'],
+        #         cwd=self.checkout_path)
+        # except subprocess2.CalledProcessError:
+        #     raise gclient_utils.Error(
+        #         '\n____ %s at %s\n'
+        #         '\tYou have unstaged changes.\n'
+        #         '\tcd into %s, run git status to see changes,\n'
+        #         '\tand commit, stash, or reset.\n' %
+        #         (self.relpath, revision, self.relpath))
+        # try:
+        #     scm.GIT.Capture([
+        #         'diff-index', '--cached', '--name-status', '-r',
+        #         '--ignore-submodules', 'HEAD', '--'
+        #     ],
+        #                     cwd=self.checkout_path)
+        # except subprocess2.CalledProcessError:
+        #     raise gclient_utils.Error(
+        #         '\n____ %s at %s\n'
+        #         '\tYour index contains uncommitted changes\n'
+        #         '\tcd into %s, run git status to see changes,\n'
+        #         '\tand commit, stash, or reset.\n' %
+        #         (self.relpath, revision, self.relpath))
 
     def _CheckDetachedHead(self, revision, _options):
         # HEAD is detached. Make sure it is safe to move away from (i.e., it is
